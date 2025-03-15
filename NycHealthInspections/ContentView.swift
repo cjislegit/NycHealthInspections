@@ -9,13 +9,35 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack{
+            VStack{
+                List{
+                    VStack(alignment: .leading) {
+                        HStack(alignment: .top) {
+                            VStack(alignment: .leading) {
+                                Text("Name of Business")
+                                Text("Address of Business")
+                            }
+                            
+                            Spacer()
+                            
+                            Text("Mexican")
+                            
+                        }
+                        .padding(.bottom)
+                        
+                        Text("Health inspection violation")
+                        
+                        Divider()
+                        
+                        Text("March 16, 2025")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                
+            }
+            .navigationTitle(Text("NYC Health Inspections"))
         }
-        .padding()
     }
 }
 
