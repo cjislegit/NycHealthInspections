@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HealthInspectionModel {
+struct HealthInspectionModel: Decodable {
     let dba: String
     let street: String
     let cuisineDescription: String?

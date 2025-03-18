@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel: HealthInspectionViewModel
+    
     var body: some View {
         NavigationStack{
             VStack{
+                
                 List{
                     VStack(alignment: .leading) {
                         HStack(alignment: .top) {
@@ -37,10 +40,11 @@ struct ContentView: View {
                 
             }
             .navigationTitle(Text("NYC Health Inspections"))
+            .task {await viewModel.fetchHealthInspectionData()}
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: HealthInspectionViewModel(service: HealthInspectionServicesImpl()))
 }

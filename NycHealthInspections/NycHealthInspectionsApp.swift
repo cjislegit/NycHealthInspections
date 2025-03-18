@@ -11,7 +11,9 @@ import SwiftUI
 struct NycHealthInspectionsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel:
+                            HealthInspectionViewModel(service:
+                            HealthInspectionServicesImpl()))
         }
     }
 }

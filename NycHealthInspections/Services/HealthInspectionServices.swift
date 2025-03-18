@@ -15,11 +15,12 @@ enum HealthInspectionServiceError: Error {
     case urlError
     case httpURLError
     case statusCodeError
+    case unknownError(errorMessage: String)
 }
 
 class HealthInspectionServicesImpl: HealthInspectionServices {
     
-    private let endpoint: String = "https://data.cityofnewyork.us/resource/nwxe-izdj.json"
+    private let endpoint: String = "https://data.cityofnewyork.us/resource/43nn-pn8j.json"
     
     func fetchHealthInspectionData() async throws -> [HealthInspectionModel] {
         guard let url = URL(string: endpoint) else {
@@ -38,12 +39,15 @@ class HealthInspectionServicesImpl: HealthInspectionServices {
             
             let jsonDecoder = JSONDecoder()
             
+            let inspections = try jsonDecoder.decode([HealthInspectionModel].self, from: data)
+            
+            return inspections
+            
             
         } catch {
-            print(error)
+            throw HealthInspectionServiceError.unknownError(errorMessage: error.localizedDescription)
         }
-        
-        return []
+
     }
     
     
